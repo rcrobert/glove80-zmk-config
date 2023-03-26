@@ -115,7 +115,7 @@
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&kp EQUAL>, <&kp GREATER_THAN>;
-        }
+        };
     };
 
 
