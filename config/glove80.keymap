@@ -19,6 +19,9 @@
 
 /* Include behaviour includes needed by key binds - automatically generated */
 #include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/rgb.h>
+#include <dt-bindings/zmk/outputs.h>
 
 
 / {
