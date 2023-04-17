@@ -118,10 +118,6 @@
         };
     };
     
-    // Configure preferred layer tap behaviors
-    &lt {
-    };
-
     macros {
         dash_arrow: dash_arrow {
             label = "ZM_dash_arrow";
