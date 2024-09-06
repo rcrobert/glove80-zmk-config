@@ -29,12 +29,35 @@
     behaviors {
         // For the "layer" key, it'd nice to be able to use it as either a shift or a toggle.
         // Configure it as a tap dance, so the first tap (or hold) is a &mo and the second tap is a &to
-        lower: tap_dance_0 {
+        layer_td: tap_dance_0 {
             compatible = "zmk,behavior-tap-dance";
             label = "LAYER_TAP_DANCE";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
             bindings = <&mo 1>, <&to 1>;
+        };
+
+        magic: magic_hold_tap {
+            compatible = "zmk,behavior-hold-tap";
+            label = "MAGIC_HOLD_TAP";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <200>;
+            bindings = <&mo>, <&rgb_ug_status_macro>;
+        };
+
+        // Define my preferred hold taps for homerow mods.
+        // - Emulate the QMK IGNORE_MOD_TAP_INTERRUPT behavior.
+        //   See https://zmk.dev/docs/behaviors/hold-tap#comparison-to-qmk
+        // - Enable quick tap.
+        hrm: homerow_mods {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HOMEROW_MODS";
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            quick-tap-ms = <150>;
+            flavor = "tap-preferred";
+            bindings = <&kp>, <&kp>;
         };
     };
 
@@ -82,35 +105,7 @@
                 = <&out OUT_BLE>,
                   <&bt BT_SEL 3>;
         };
-    };
-
-    magic: magic_hold_tap {
-        compatible = "zmk,behavior-hold-tap";
-        label = "MAGIC_HOLD_TAP";
-        #binding-cells = <2>;
-        flavor = "tap-preferred";
-        tapping-term-ms = <200>;
-        bindings = <&mo>, <&rgb_ug_status_macro>;
-    };
-
-    /* Custom Defined Behaviors */
-    behaviors {
-        // Define my preferred hold taps for homerow mods.
-        // - Emulate the QMK IGNORE_MOD_TAP_INTERRUPT behavior.
-        //   See https://zmk.dev/docs/behaviors/hold-tap#comparison-to-qmk
-        // - Enable quick tap.
-        hrm: homerow_mods {
-            compatible = "zmk,behavior-hold-tap";
-            label = "HOMEROW_MODS";
-            #binding-cells = <2>;
-            tapping-term-ms = <200>;
-            quick-tap-ms = <150>;
-            flavor = "tap-preferred";
-            bindings = <&kp>, <&kp>;
-        };
-    };
     
-    macros {
         dash_arrow: dash_arrow {
             label = "ZM_dash_arrow";
             compatible = "zmk,behavior-macro";
